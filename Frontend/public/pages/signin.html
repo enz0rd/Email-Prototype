@@ -158,7 +158,7 @@
 
 
     <main class="form-signin w-100 m-auto">
-        <form>
+        <form method="post" action="/try-login">
             <img class="mb-4" src="../src/assets/brand/logo.svg" alt="" width="80" height="50">
             <h1 class="h3 mb-3 fw-normal">Login</h1>
 
@@ -171,8 +171,9 @@
                 <label for="floatingPassword">Senha</label>
             </div>
             <button class="btn btn-primary w-100 py-2" type="submit" id="bot-entrar">Sign in</button>
-            <a class="mx-auto p-4 text-decoration-none" href="./signup.html">Doesn't have an account? Sign up</a>
         </form>
+        <br>
+        <a class="text-decoration-none" href="/signup">Doesn't have an account? Sign up</a>
     </main>
     <script src="../src/assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../src/js/signin.js"></script>
