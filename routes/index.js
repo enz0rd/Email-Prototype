@@ -1,5 +1,5 @@
 const bodyParser = require('body-parser')
-const cadastro = require('./cadastroRoutes')
+const cadastro = require('./cadastroRoutes.js')
 
 module.exports = app => {
     app.use(bodyParser.json());

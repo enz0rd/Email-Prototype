@@ -12,6 +12,8 @@ const port = 3000;
 app.listen(port, () => {
     console.log(`Server rodando em:
     http://localhost:${port}/`);
+    app.use(express.static('./Frontend/public'))
+
 })
 
 module.exports = app

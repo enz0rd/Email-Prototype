@@ -1,4 +1,5 @@
-document.getElementById("signup-form").addEventListener("submit", function (event) {
+
+document.getElementById("login-form").addEventListener("submit", function (event) {
     event.preventDefault(); // Impede o envio do formulário padrão
     function verificarCamposPreenchidos(form) {
         var inputs = form.querySelectorAll('input');
@@ -12,23 +13,20 @@ document.getElementById("signup-form").addEventListener("submit", function (even
         return true; // Retorna verdadeiro se todos os campos estiverem preenchidos
     }
 
-    var form = document.getElementById('signup-form');
+    var form = document.getElementById('login-form');
     var camposPreenchidos = verificarCamposPreenchidos(form);
 
     if (camposPreenchidos) {
+
         var form = event.target;
-        var name = form.querySelector('.name').value;
-        var email = form.querySelector('.email').value;
-        var password = form.querySelector('.password').value;
-        var birth = form.querySelector('.birth').value;
-
+        var email = form.querySelector('input[type="email"]').value;
+        var password = form.querySelector('input[type="password"]').value;
+    
         var data = {
-            name: `${name}`,
             email: `${email}`,
-            password: `${password}`,
-            birth: `${birth}`
+            password: `${password}`
         };
-
+    
         var xhr = new XMLHttpRequest();
         xhr.open("POST", form.action, true);
         xhr.setRequestHeader("Content-Type", "application/json");
@@ -43,4 +41,6 @@ document.getElementById("signup-form").addEventListener("submit", function (even
     } else {
         alert("Preencha todos os campos!");
     }
+
+    
 });
