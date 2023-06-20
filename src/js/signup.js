@@ -1,3 +1,4 @@
+
 document.getElementById("signup-form").addEventListener("submit", function (event) {
     event.preventDefault(); // Impede o envio do formulário padrão
     function verificarCamposPreenchidos(form) {
@@ -35,8 +36,10 @@ document.getElementById("signup-form").addEventListener("submit", function (even
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 // A solicitação foi bem-sucedida
-                var jsonResponse = JSON.parse(xhr.responseText)
-                alert(jsonResponse.message)
+                // var jsonResponse = JSON.parse(xhr.responseText)
+                // if(jsonResponse.message != "" || jsonResponse.message != null) {
+                //     alert(jsonResponse.message)
+                // }
             }
         };
         xhr.send(JSON.stringify(data));

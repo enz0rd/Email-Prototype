@@ -33,8 +33,8 @@ document.getElementById("login-form").addEventListener("submit", function (event
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 // A solicitação foi bem-sucedida
-                var jsonResponse = JSON.parse(xhr.responseText)
-                alert(jsonResponse.message)
+                // var jsonResponse = JSON.parse(xhr.responseText)
+                // alert(jsonResponse.message)
             }
         };
         xhr.send(JSON.stringify(data));

@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Email</title>
+    <title>Sign Up - Email</title>
     <link rel="icon" href="../src/assets/brand/logo.svg">
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
-    <script src="../src/assets/js/color-modes.js"></script>
     <link href="../src/assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .bd-placeholder-img {
@@ -85,31 +83,43 @@
         }
     </style>
     <!-- Custom styles for this template -->
-    <link href="../src/css/sign-in.css" rel="stylesheet">
+    <link href="../src/css/sign-up.css" rel="stylesheet">
 </head>
 
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
 
-    <main class="form-signin w-100 m-auto">
-        <form method="get|post" action="/try-login" id="login-form">
+    <main class="form-signup w-100 m-auto">
+        <form method="post" action="/try-signup" id="signup-form">
             <img class="mb-4" src="../src/assets/brand/logo.svg" alt="" width="80" height="50">
-            <h1 class="h3 mb-3 fw-normal">Login</h1>
+            <h1 class="h3 mb-3 fw-normal">Sign up</h1>
 
             <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput email" placeholder="name@example.com">
+                <input class="form-control name" id="floatingInput name" placeholder="John Doe">
+                <label for="floatingInput">Name</label>
+            </div>
+            <div class="form-floating">
+                <input type="email" class="form-control email" id="floatingInput email" placeholder="john@doe.com">
                 <label for="floatingInput">Email</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword password" placeholder="Password">
-                <label for="floatingPassword">Senha</label>
+                <input type="password" class="form-control password" id="floatingPassword password" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control confirm-password" id="floatingPassword confirm-password" placeholder="Confirm Password">
+                <label for="floatingPassword">Confirm Password</label>
+            </div>
+            <div class="form-floating">
+                <input type="date" class="form-control birth" id="floatingPassword birth">
+                <label for="floatingPassword">Birth date</label>
             </div>
             <button class="btn btn-primary w-100 py-2" type="submit" id="bot-entrar">Sign in</button>
         </form>
         <br>
-        <a class="text-decoration-none" href="/signup">Doesn't have an account? Sign up</a>
+        <a class="text-decoration-none href" href="/signin">Already have an account? Sign in</a>
     </main>
     <script src="../src/assets/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../src/js/signin.js"></script>
+    <script src="../src/js/signup.js"></script>
 
 </body>
 
