@@ -3,10 +3,6 @@ const path = require('path');
 const cookieParser = require("cookie-parser");
 
 class CadastroController {
-    static async redirect(res, page) {
-        res.redirect(`${page}`);
-    }
-
     static async getCadastros(req, res) {
         try {
             res.sendFile(path.join(__dirname, '../pages', 'signup.html'))
@@ -38,20 +34,16 @@ class CadastroController {
                     const expirationTime = Date.now() + maxAge;
                     res.cookie('sessionId', sessionId, { value: true, maxAge: 3600000 })
                     res.cookie('expirationTime', expirationTime, { maxAge });
-                    console.log(`Redirecting`)
-                    try {
-                        res.redirect('/home');
-                    }catch (error) {
-                        console.log(`Erro ao listar: ${error.message}`)
-                    }
+                    console.log(`Redirecting`);
+                    res.redirect('/home');
                 } catch (error) {
                     console.log(`Erro ao listar: ${error.message}`)
                     res.status(500).send({ message: `Erro ao listar: ${error.message}` });
                 }
             } else {
-                console.log(`Erro ao listar: ${error.message}`)
                 res.send({ message: "Dados inválidos" });
             }
+
         } catch (error) {
             console.log(`Erro ao listar: ${error.message}`)
             res.status(500).send({ message: `Erro ao listar: ${error.message}` });
@@ -59,7 +51,8 @@ class CadastroController {
     }
 
     static async Logout(req, res) {
-        req.session.destroy();
+        res.clearCookie("sessionId");
+        res.clearCookie("expirationTime");
         res.redirect('/');
     }
 
@@ -87,11 +80,7 @@ class CadastroController {
                     res.cookie('sessionId', sessionId, { value: true, maxAge: 3600000 })
                     res.cookie('expirationTime', expirationTime, { maxAge });
                     console.log(`Redirecting`)
-                    try {
-                        res.redirect('/home');
-                    }catch (error) {
-                        console.log(`Erro ao listar: ${error.message}`)
-                    }
+                    res.redirect('/home');
                 } catch (error) {
                     console.log(`Erro ao listar: ${error.message}`)
                     res.status(500).send({ message: `Erro ao listar: ${error.message}` });

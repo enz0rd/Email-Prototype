@@ -17,21 +17,21 @@ class HomeController {
                     if(result) {
                         if(maxAge < Date.now()) {
                             console.log(`Não autorizado`)
-                            res.status(304).send({message: 'Não autorizado'});
+                            res.sendFile(path.join(__dirname, '../pages', 'not_auth.html'));
                         } else {
                             console.log(`${sessionId} Autorizado`)
                             res.sendFile(path.join(__dirname, '../pages', 'home.html'));
                         }
                     } else {
                         console.log(`Não autorizado`)
-                        res.status(304).send({message: 'Não autorizado'});
+                        res.sendFile(path.join(__dirname, '../pages', 'not_auth.html'));
                     }
                 } catch (error) {
                     console.log(`Erro ao listar: ${error.message}`)
                 }
             } catch (error) {
                 console.log(`Erro ao listar: ${error.message}`)
-                res.send({message: 'Não autorizado'});
+                res.sendFile(path.join(__dirname, '../pages', 'not_auth.html'));
             }
         } catch (error) {
             console.log(`Erro ao listar: ${error.message}`)

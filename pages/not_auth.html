@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Email</title>
+    <title>Not authorized - Email</title>
     <link rel="icon" href="../src/assets/brand/logo.svg">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
     <link href="../src/assets/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -90,25 +90,12 @@
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
 
     <main class="form-signin w-100 m-auto">
-        <form method="post" action="/try-login" id="login-form">
-            <img class="mb-4" src="../src/assets/brand/logo.svg" alt="" width="80" height="50">
-            <h1 class="h3 mb-3 fw-normal">Login</h1>
-
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput email" placeholder="name@example.com">
-                <label for="floatingInput">Email</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword password" placeholder="Password">
-                <label for="floatingPassword">Password</label>
-            </div>
-            <button class="btn btn-primary w-100 py-2" type="submit" id="bot-entrar">Sign in</button>
-        </form>
-        <br>
-        <a class="text-decoration-none" href="/signup">Doesn't have an account? Sign up</a>
+        <img class="mb-4" src="../src/assets/brand/logo.svg" alt="" width="80" height="50">
+        <h1 class="h3 mb-3 fw-normal" id="message">Not authorized</h1>
+        <h1 class="h5 mb-3 fw-normal" id="message">returning to Login</h1>
     </main>
     <script src="../src/assets/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../src/js/signin.js"></script>
+    <script src="../src/js/notauth.js"></script>
 
 </body>
 

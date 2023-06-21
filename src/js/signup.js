@@ -34,12 +34,26 @@ document.getElementById("signup-form").addEventListener("submit", function (even
         xhr.open("POST", form.action, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // A solicitação foi bem-sucedida
-                // var jsonResponse = JSON.parse(xhr.responseText)
-                // if(jsonResponse.message != "" || jsonResponse.message != null) {
-                //     alert(jsonResponse.message)
-                // }
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    // Verificar o tipo de resposta
+                    var contentType = xhr.getResponseHeader("Content-Type");
+                    if (contentType && contentType.includes("application/json")) {
+                        // A resposta é JSON válido
+                        var jsonResponse = JSON.parse(xhr.responseText);
+                        if (jsonResponse.message) {
+                            // Exibir mensagem de erro
+                            alert(jsonResponse.message);
+                        }
+                        alert('Ocorreu um erro na solicitação.');
+                    } else {
+                        window.location.href = '/home';
+                        // A resposta não é um JSON válido, exibir mensagem genérica
+                    }
+                } else {
+                    // Exibir mensagem de erro genérica
+                    alert('Ocorreu um erro na solicitação.');
+                }
             }
         };
         xhr.send(JSON.stringify(data));
