@@ -42,7 +42,6 @@ document.getElementById("login-form").addEventListener("submit", function (event
                             // Exibir mensagem de erro
                             alert(jsonResponse.message);
                         }
-                        alert('Ocorreu um erro na solicitação.');
                     } else {
                         window.location.href = '/home';
                         // A resposta não é um JSON válido, exibir mensagem genérica

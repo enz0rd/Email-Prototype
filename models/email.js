@@ -1,12 +1,13 @@
 'use strict';
+
 const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Email extends Model {
     static associate(models) {
-      Email.belongsTo(models.Usuario, { foreignKey: 'idusuario_origem' });
-      Email.belongsTo(models.Usuario, { foreignKey: 'idusuario_dest' });
+      Email.belongsTo(models.Usuario, { foreignKey: 'idusuario_origem', as: 'origem' });
+      Email.belongsTo(models.Usuario, { foreignKey: 'idusuario_dest', as: 'destino' });
     }
   }
   Email.init({
@@ -38,5 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Email',
   });
+  // Email model
+
   return Email;
 };

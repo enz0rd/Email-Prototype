@@ -1,3 +1,4 @@
+const Email = require('./email')
 'use strict';
 const {
   Model
@@ -6,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   class Usuario extends Model {
     static associate(models) {
       // define association here
+      Usuario.hasMany(models.Email, { foreignKey: 'idusuario_origem', as: 'origem' });
     }
   }
   Usuario.init({
@@ -29,5 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Usuario',
   });
+  // Usuario model
+
   return Usuario;
 };

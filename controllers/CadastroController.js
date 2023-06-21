@@ -53,7 +53,7 @@ class CadastroController {
     static async Logout(req, res) {
         res.clearCookie("sessionId");
         res.clearCookie("expirationTime");
-        res.redirect('/');
+        res.sendFile(path.join(__dirname, '../pages', 'loggedout.html'));
     }
 
     static async addUser(req, res) {
