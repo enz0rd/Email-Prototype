@@ -89,178 +89,144 @@
             z-index: 1500;
         }
     </style>
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .b-example-divider {
+            width: 100%;
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .btn-bd-primary {
+            --bd-violet-bg: #712cf9;
+            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+            --bs-btn-font-weight: 600;
+            --bs-btn-color: var(--bs-white);
+            --bs-btn-bg: var(--bd-violet-bg);
+            --bs-btn-border-color: var(--bd-violet-bg);
+            --bs-btn-hover-color: var(--bs-white);
+            --bs-btn-hover-bg: #6528e0;
+            --bs-btn-hover-border-color: #6528e0;
+            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+            --bs-btn-active-color: var(--bs-btn-hover-color);
+            --bs-btn-active-bg: #5a23c8;
+            --bs-btn-active-border-color: #5a23c8;
+        }
+
+        .bd-mode-toggle {
+            z-index: 1500;
+        }
+    </style>
 </head>
 
 <body>
+    <header class="navbar sticky-top flex-md-nowrap p-50 justify-content-around border-bottom">
+        <a href="/home" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="../src/assets/brand/logo.svg" alt="" width="60" height="50">
+        </a>
+        <div class="flex-shrink-0 dropstart">
+            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="../src/assets/ppl/user.avif" alt="user" width="32" height="32" class="rounded-circle">
+            </a>
+            <ul class="dropdown-menu text-small shadow">
+                <li><a class="dropdown-item" href="/new-email">New Email<a></li>
+                <!-- <li><a class="dropdown-item" href="#">Settings</a></li> -->
+                <!-- <li><a class="dropdown-item" href="#">Profile</a></li> -->
+                <!-- <li><hr class="dropdown-divider"></li> -->
+                <li><a class="dropdown-item" href="/logout">Sign out</a></li>
+            </ul>
+        </div>
 
-    <main>
-        <header class="py-3 mb-3 border-bottom header-nav">
-            <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
-                <div class="dropdown">
-                    <a href="/home"
-                        class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="../src/assets/brand/logo.svg" alt="" width="50" height="40">
-                    </a>
-                    <!-- <ul class="dropdown-menu text-small shadow">
-          <li><a class="dropdown-item active" href="#" aria-current="page">Overview</a></li>
-          <li><a class="dropdown-item" href="#">Inventory</a></li>
-          <li><a class="dropdown-item" href="#">Customers</a></li>
-          <li><a class="dropdown-item" href="#">Products</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Reports</a></li>
-          <li><a class="dropdown-item" href="#">Analytics</a></li>
-        </ul> -->
-                </div>
+    </header>
 
-                <div class="d-flex align-items-center">
-                    <form class="w-100 me-3" role="search">
-                        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-                    </form>
+    <div class="container-fluid">
+        <div class="row">
 
-                    <div class="flex-shrink-0 dropdown">
-                        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="../src/assets/ppl/user.avif" alt="user" width="32" height="32"
-                                class="rounded-circle">
-                        </a>
-                        <ul class="dropdown-menu text-small shadow">
-                            <li><a class="dropdown-item" href="#">New Email<a></li>
-                            <!-- <li><a class="dropdown-item" href="#">Settings</a></li> -->
-                            <!-- <li><a class="dropdown-item" href="#">Profile</a></li> -->
-                            <!-- <li><hr class="dropdown-divider"></li> -->
-                            <li><a class="dropdown-item" href="/logout">Sign out</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <main>
-            <div class="d-flex flex-column flex-md-row list-emails gap-4 sidebar-init">
-                <div class="list-group">
-                    <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                        <div class="d-flex gap-2 w-100 justify-content-between">
-                        </div>
-                    </a>
-                    <% for(var i=0; i < data.length; i++) { %>
-                        <a class="list-group-item list-group-item-action d-flex gap-3 py-3"
-                            aria-current="true">
-                            <img src="../src/assets/ppl/user.avif" alt="twbs" width="32" height="32"
-                                class="rounded-circle flex-shrink-0">
+            <main class="">
+                <h2 class="justify-content-evenly mx-2 mt-2">Emails</h2>
+                <div class="table-responsive small">
+                    <div class="list-group mx-2">
+                        <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
                             <div class="d-flex gap-2 w-100 justify-content-between">
-                                <div>
-                                    <h6 class="mb-0">
-                                        <%= data[i].name %>
-                                    </h6>
-                                    <p class="mb-0 opacity-75">
-                                        <%= data[i].texto %>
-                                    </p>
-                                </div>
-                                <small class="opacity-50 text-nowrap">
-                                    <%= data[i].data_envio %>
-                                </small>
                             </div>
                         </a>
-                        <% }; %>
-                            <a class="list-group-item list-group-item-action d-flex gap-3 py-3"
-                                aria-current="true">
+                        <% for(var i=0; i < data.length; i++) { %>
+                            <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                                <img src="../src/assets/ppl/user.avif" alt="twbs" width="32" height="32"
+                                    class="rounded-circle flex-shrink-0">
                                 <div class="d-flex gap-2 w-100 justify-content-between">
+                                    <div>
+                                        <h6 class="mb-0">
+                                            <%= data[i].name %>
+                                        </h6>
+                                        <p class="mb-0 opacity-75">
+                                            <%= data[i].texto %>
+                                        </p>
+                                    </div>
+                                    <small class="opacity-50 text-nowrap">
+                                        <%= data[i].data_envio %>
+                                    </small>
                                 </div>
                             </a>
+                            <% }; %>
+                                <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                                    <div class="d-flex gap-2 w-100 justify-content-between">
+                                    </div>
+                                </a>
+                    </div>
                 </div>
-            </div>
+            </main>
+        </div>
+    </div>
 
-            <div class="flex-shrink-0 p-3" style="width: 280px;">
-                <ul class="list-unstyled ps-0">
-                    <li class="mb-1">
-                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                            data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-                            Home
-                        </button>
-                        <div class="collapse show" id="home-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">Overview</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">Updates</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">Reports</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="mb-1">
-                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                            data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                            Dashboard
-                        </button>
-                        <div class="collapse" id="dashboard-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">Overview</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">Weekly</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">Monthly</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">Annually</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="mb-1">
-                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                            data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-                            Orders
-                        </button>
-                        <div class="collapse" id="orders-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">New</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">Processed</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">Shipped</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">Returned</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="border-top my-3"></li>
-                    <li class="mb-1">
-                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                            data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-                            Account
-                        </button>
-                        <div class="collapse" id="account-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">New...</a>
-                                </li>
-                                <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Profile</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-dark d-inline-flex text-decoration-none rounded">Settings</a>
-                                </li>
-                                <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Sign
-                                        out</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </main>
-
-    </main>
     <script src="../src/assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../src/js/home.js"></script>
 

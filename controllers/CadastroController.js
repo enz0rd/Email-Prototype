@@ -7,7 +7,12 @@ class CadastroController {
         try {
             res.sendFile(path.join(__dirname, '../pages', 'signup.html'))
         } catch (error) {
-            res.status(500).send({ message: `Erro ao listar: ${error.message}` });
+            const error_message = []
+            error_message.push({
+                title: "Error",
+                message: error.message
+            })
+            res.render('../pages/not_auth', { data: error_message });
         }
     }
 
@@ -15,7 +20,12 @@ class CadastroController {
         try {
             res.sendFile(path.join(__dirname, '../pages', 'signin.html'))
         } catch (error) {
-            res.status(500).send({ message: `Erro ao listar: ${error.message}` });
+            const error_message = []
+            error_message.push({
+                title: "Error",
+                message: error.message
+            })
+            res.render('../pages/not_auth', { data: error_message });
         }
     }
 
@@ -38,15 +48,25 @@ class CadastroController {
                     res.redirect('/home');
                 } catch (error) {
                     console.log(`Erro ao listar: ${error.message}`)
-                    res.status(500).send({ message: `Erro ao listar: ${error.message}` });
+                    const error_message = []
+                    error_message.push({
+                        title: "Error",
+                        message: error.message
+                    })
+                    res.render('../pages/not_auth', { data: error_message });
                 }
             } else {
-                res.send({ message: "Dados inválidos" });
+                res.send({ message: "Invalid credentials" });
             }
 
         } catch (error) {
             console.log(`Erro ao listar: ${error.message}`)
-            res.status(500).send({ message: `Erro ao listar: ${error.message}` });
+            const error_message = []
+            error_message.push({
+                title: "Error",
+                message: error.message
+            })
+            res.render('../pages/not_auth', { data: error_message });
         }
     }
 
@@ -64,7 +84,7 @@ class CadastroController {
                 }
             })
             if (resp) {
-                res.send({ message: "Já existe um cadastro nesse email!" });
+                res.send({ message: "This email is already in use!" });
             } else {
                 const add = await db.Usuario.create({
                     name: req.body.name,
@@ -83,12 +103,22 @@ class CadastroController {
                     res.redirect('/home');
                 } catch (error) {
                     console.log(`Erro ao listar: ${error.message}`)
-                    res.status(500).send({ message: `Erro ao listar: ${error.message}` });
+                    const error_message = []
+                    error_message.push({
+                        title: "Error",
+                        message: error.message
+                    })
+                    res.render('../pages/not_auth', { data: error_message });
                 }
             }
         } catch (error) {
             console.log(`Erro ao listar: ${error.message}`)
-            res.status(500).send({ message: `Erro ao listar: ${error.message}` });
+            const error_message = []
+            error_message.push({
+                title: "Error",
+                message: error.message
+            })
+            res.render('../pages/not_auth', { data: error_message });
         }
     }
 }

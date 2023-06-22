@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Not authorized - Email</title>
+    <title><%= data[0].title %> - Email</title>
     <link rel="icon" href="../src/assets/brand/logo.svg">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
     <link href="../src/assets/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -91,8 +91,8 @@
 
     <main class="form-signin w-100 m-auto">
         <img class="mb-4" src="../src/assets/brand/logo.svg" alt="" width="80" height="50">
-        <h1 class="h3 mb-3 fw-normal" id="message">Not authorized</h1>
-        <h1 class="h5 mb-3 fw-normal" id="message">returning to Login</h1>
+        <h1 class="h3 mb-3 fw-normal" id="message"><%= data[0].title %></h1>
+        <h1 class="h5 mb-3 fw-normal" id="message"><%= data[0].message %></h1>
     </main>
     <script src="../src/assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../src/js/notauth.js"></script>

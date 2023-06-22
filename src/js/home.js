@@ -5,4 +5,6 @@
     tooltipTriggerList.forEach(tooltipTriggerEl => {
       new bootstrap.Tooltip(tooltipTriggerEl)
     })
+    
   })()
+
