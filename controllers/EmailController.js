@@ -4,46 +4,21 @@ const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const { resourceLimits } = require('worker_threads');
 const { json } = require('express');
-const moment = require('moment')
 
-class HomeController {
-    static async getHome(req, res) {
+
+class EmailController {
+    static async getNewEmail(req, res) {
         try {
             const userEmail = atob(req.cookies.sessionId);
-
-            const fetch = await db.Email.findAll({
-                attributes: [
-                    'id',
-                    [sequelize.literal(`(SELECT name FROM usuarios WHERE id = Email.idusuario_origem)`), 'name'],
-                    [sequelize.literal(`(SELECT email FROM usuarios WHERE id = Email.idusuario_origem)`), 'email'],
-                    'texto',
-                    [sequelize.literal(`DATE_FORMAT(Email.data_envio, '%d/%m/%Y %H:%i')`), 'formatted_data_envio']
-                    ],
-                where: {
-                  idusuario_dest: sequelize.literal(`idusuario_dest = (SELECT id FROM usuarios WHERE email = '${userEmail}')`)
-                }
-            });
-            const jsonString = JSON.stringify(fetch)
-            const jsonParse = JSON.parse(jsonString)
-            if(jsonParse.length == 0) {
-                jsonParse.push({
-                    id: null,
-                    name: "Empty",
-                    texto: "Still nothing here!",
-                    formatted_data_envio: "now"
-                  });
-                }
-                // console.log(jsonParse)
-            
             var check = checkCookies(req, res)
             if(check) {
-                res.render('../pages/home', { data: jsonParse });
+                res.render('../pages/new_email');
                 // res.sendFile(path.join(__dirname, '../pages', `home.ejs`));
             } else {
-                var error = {
+                var error = [{
                     title: "Not Authorized",
                     message: "Returning to login"
-                }
+                }]
                 res.render('../pages/not_auth', { data: error });
             }
         } catch (error) {
@@ -64,47 +39,73 @@ class HomeController {
         }
     }
 
-    static async getSent(req, res) {
+    static async trySendEmail(req, res) {
         try {
             const userEmail = atob(req.cookies.sessionId);
-
-            const fetch = await db.Email.findAll({
-                attributes: [
-                    'id',
-                    [sequelize.literal(`(SELECT name FROM usuarios WHERE id = Email.idusuario_dest)`), 'name'],
-                    [sequelize.literal(`(SELECT email FROM usuarios WHERE id = Email.idusuario_dest)`), 'email'],
-                    'texto',
-                    [sequelize.literal(`DATE_FORMAT(Email.data_envio, '%d/%m/%Y %H:%i')`), 'formatted_data_envio']
-                    ],
-                where: {
-                  idusuario_dest: sequelize.literal(`idusuario_origem = (SELECT id FROM usuarios WHERE email = '${userEmail}')`)
-                }
-            });
-            const jsonString = JSON.stringify(fetch)
-            const jsonParse = JSON.parse(jsonString)
-            if(jsonParse.length == 0) {
-                jsonParse.push({
-                    id: null,
-                    name: "Empty",
-                    texto: "Still nothing here, try sending emails!",
-                    formatted_data_envio: "now"
-                  });
-                }
-                // console.log(jsonParse)
-            
+            console.log(userEmail)
             var check = checkCookies(req, res)
             if(check) {
-                res.render('../pages/sent', { data: jsonParse });
-                // res.sendFile(path.join(__dirname, '../pages', `home.ejs`));
+                if(req.body.email_dest == userEmail) {
+                    res.send({ message: "Cannot send email to yourself" });
+                } else {
+                    const resp = await db.Usuario.findOne({
+                        where: {
+                            email: req.body.email_dest,
+                        }
+                    })
+                    if (resp != null) {
+                        try {
+                            const origem = await db.Usuario.findOne({
+                                attributes: [
+                                    'id'
+                                ],
+                                where: {
+                                    email: userEmail
+                                }
+                            })
+                            const dest = await db.Usuario.findOne({
+                                attributes: [
+                                    'id'
+                                ],
+                                where: {
+                                    email: req.body.email_dest
+                                }
+                            })
+                            const iduser_d = JSON.stringify(dest) 
+                            const iduser_or = JSON.stringify(origem) 
+                            const iduser_d_format = JSON.parse(iduser_d) 
+                            const iduser_or_format = JSON.parse(iduser_or) 
+                            const iduser_dest = iduser_d_format.id
+                            const iduser_origem = iduser_or_format.id 
+                            console.log(iduser_dest);
+                            console.log(iduser_origem);
+                            const new_email = await db.Email.create({
+                                idusuario_origem: iduser_origem,
+                                idusuario_dest: iduser_dest,
+                                texto: req.body.text,
+                                data_envio: new Date,
+                                createdAt: new Date,
+                                updatedAt: new Date,
+                            });
+                            res.redirect('/home');
+                        } catch (error) {
+                            console.log(`Erro ao listar: ${error.message}`)
+                            res.send({ message: "Error while communicating with the database" });
+                        }
+                    } else {
+                        res.send({ message: "User not found" });
+                    }
+                }
             } else {
-                var error = {
+                var error = [{
                     title: "Not Authorized",
                     message: "Returning to login"
-                }
+                }]
                 res.render('../pages/not_auth', { data: error });
             }
         } catch (error) {
             console.log(`Erro ao listar: ${error.message}`)
+            console.log(`${req.cookies.sessionId}`)
             const error_message = []
             if(error.message == "The string to be decoded is not correctly encoded.") {
                 error_message.push({
@@ -155,4 +156,4 @@ async function checkCookies(req, res) {
     }
 }
 
-module.exports = HomeController;
+module.exports = EmailController

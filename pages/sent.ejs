@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.112.5">
     <link rel="shortcut icon" href="../src/assets/brand/logo.svg" type="image/x-icon">
-    <title>Home - Email</title>
+    <title>Sent - Email</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/headers/">
 
@@ -177,7 +177,7 @@
             </a>
             <ul class="dropdown-menu text-small shadow">
                 <li><a class="dropdown-item" href="/new-email">New Email<a></li>
-                <li><a class="dropdown-item" href="/sent">Sent</a></li>
+                <li><a class="dropdown-item" href="/home">Home</a></li>
                 <!-- <li><a class="dropdown-item" href="#">Profile</a></li> -->
                 <!-- <li><hr class="dropdown-divider"></li> -->
                 <li><a class="dropdown-item" href="/logout">Sign out</a></li>
@@ -190,7 +190,7 @@
         <div class="row">
 
             <main class="">
-                <h2 class="justify-content-evenly mx-4 mt-4">Emails</h2>
+                <h2 class="justify-content-evenly mx-4 mt-4">Sent</h2>
                 <div class="table-responsive small">
                     <div class="list-group mx-4">
                         <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
@@ -203,7 +203,7 @@
                                     class="rounded-circle flex-shrink-0">
                                 <div class="d-flex gap-2 w-100 justify-content-between">
                                     <div>
-                                        <h6 class="mb-0">
+                                        <h6 class="mb-0"> <small class="opacity-50">sent to</small>
                                             <%= data[i].name %>
                                         </h6>
                                         <p class="mb-0 opacity-75">
@@ -225,7 +225,6 @@
             </main>
         </div>
     </div>
-
     <script src="../src/assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../src/js/home.js"></script>
 
