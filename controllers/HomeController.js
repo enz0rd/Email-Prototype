@@ -4,9 +4,24 @@ const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const { resourceLimits } = require('worker_threads');
 const { json } = require('express');
-const moment = require('moment')
+const moment = require('moment');
+const path = require('path');
 
 class HomeController {
+
+    static async getLanding(req,res) {
+        try {
+            res.sendFile(path.join(__dirname, '../pages', 'landing.html'))
+        } catch (error) {
+            const error_message = []
+            error_message.push({
+                title: "Error",
+                message: error.message + " Returning to login"
+            })
+            res.render('../pages/not_auth', { data: error_message });
+        }
+    }
+
     static async getHome(req, res) {
         try {
             const userEmail = atob(req.cookies.sessionId);

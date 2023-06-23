@@ -1,0 +1,2 @@
+document.getElementById('signin').addEventListener('click', () => { window.location.href = '/signin';})
+document.getElementById('signup').addEventListener('click', () => { window.location.href = '/signup';})

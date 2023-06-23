@@ -48,7 +48,7 @@ document.getElementById("login-form").addEventListener("submit", function (event
                     }
                 } else {
                     // Exibir mensagem de erro genérica
-                    alert('Ocorreu um erro na solicitação.');
+                    alert('An error occurred.');
                 }
             }
         };
@@ -56,7 +56,7 @@ document.getElementById("login-form").addEventListener("submit", function (event
 
 
     } else {
-        alert("Preencha todos os campos!");
+        alert("Fill in all fields!");
     }
 
 

@@ -3,11 +3,19 @@ document.getElementById("signup-form").addEventListener("submit", function (even
     event.preventDefault(); // Impede o envio do formulário padrão
     function verificarCamposPreenchidos(form) {
         var inputs = form.querySelectorAll('input');
+        var passwordInput = form.querySelector('.password');
+        var confirmPasswordInput = form.querySelector('.confirm-password');
+
 
         for (var i = 0; i < inputs.length; i++) {
             if (inputs[i].value.trim() === '') {
                 return false; // Retorna falso se algum campo estiver vazio
             }
+        }
+
+        if (passwordInput.value !== confirmPasswordInput.value) {
+            alert("The passwords must match!");
+            return false; // Returns false if passwords don't match
         }
 
         return true; // Retorna verdadeiro se todos os campos estiverem preenchidos
@@ -51,12 +59,12 @@ document.getElementById("signup-form").addEventListener("submit", function (even
                     }
                 } else {
                     // Exibir mensagem de erro genérica
-                    alert('Ocorreu um erro na solicitação.');
+                    alert('An error occurred.');
                 }
             }
         };
         xhr.send(JSON.stringify(data));
     } else {
-        alert("Preencha todos os campos!");
+        alert("Fill in all fields!");
     }
 });
